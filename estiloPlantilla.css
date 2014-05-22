@@ -1,0 +1,71 @@
+body{
+
+	margin: auto;
+	height: 100%;
+	width:	100%;
+}
+
+header{
+
+	height: 15%;
+	width:	100%;
+	margin: auto;
+	border: 1px solid black;
+	float: left;
+
+}
+
+nav{
+
+	height: 5%;
+	width:	100%;
+	margin: auto;
+	border: 1px solid black;
+	float: left;
+
+}
+
+article{
+
+	height: 70%;
+	width:	100%;
+	margin: auto;
+	border: 1px solid black;
+	float: left;
+	padding-top: 10px;
+	padding-left: 10px;
+
+}
+
+footer{
+
+	height: 10%;
+	width:	100%;
+	margin: auto;
+	border: 1px solid black;
+	float: left;
+
+}
+
+table#listar tr td{
+
+	padding-right: 30px;
+}
+
+#validaUsuario img {
+  margin-right: 5%;
+  margin-bottom: -2%;
+  padding: 0; 
+}
+
+#validaCedula img {
+  margin-right: 5%;
+  margin-bottom: -2%;
+  padding: 0; 
+}
+
+#validaEmail img {
+  margin-right: 5%;
+  margin-bottom: -2%;
+  padding: 0; 
+}
