@@ -19,6 +19,7 @@ $usuario->setEmail($_POST['email']);
 $usuario->setNombreUsuario($_POST['nombreUsuario']);
 $usuario->setClave($_POST['clave']);
 $usuario->setTipo($_POST['tipo']);
+$usuario->setTipo($_POST['departamento']);
 $usuario->addUser($conexion);
 
 $conexion->close();

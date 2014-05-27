@@ -28,8 +28,7 @@
 
                               <td>".$resultado['nombre']."</td>
                               <td><a href=\"#\">Ver Empleados</a></td>
-                              <td><a href=\"#\">Editar</a></td>
-                              <td><a href=\"#\">Desactivar</a></td>
+                              <td><a href=\"editDepartament.php?active=4&id=".$resultado['id']."\">Editar</a></td>
 
                         </tr>";
             }

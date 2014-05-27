@@ -52,13 +52,15 @@ $consulta = $usuario->listUser($conexion);
 
 				<tr>
 
-					<td>Nombre</td>
-					<td>Apellido</td>
-					<td>Cedula</td>
-					<td>Email</td>
-					<td>Usuario</td>
-					<td>Tipo</td>
-					<td>Estado</td>
+					<td><ins>Nombre</ins></td>
+					<td><ins>Apellido</ins></td>
+					<td><ins>Cedula</ins></td>
+					<td><ins>Email</ins></td>
+					<td><ins>Usuario</ins></td>
+					<td><ins>Tipo</ins></td>
+					<td><ins>Estado</ins></td>
+					<td><ins>Cede</ins></td>
+					<td><ins>Departamento</ins></td>
 					<td></td>
 					<td></td>
 
@@ -86,14 +88,27 @@ $consulta = $usuario->listUser($conexion);
 							$actdesc = "Activar";
 						}
 
+						if($resultado['id_cede']==11)
+							$cede = "CI - Carupano";
+						if($resultado['id_cede']==12)
+							$cede = "CI - Maturin";
+						if($resultado['id_cede']==13)
+							$cede = "CI - Cumana";
+						if($resultado['id_cede']==21)
+							$cede = "SF - Carupano";
+						if($resultado['id_cede']==22)
+							$cede = "SF - Cumana";
+
 						echo "<tr>
 								  <td>".$resultado['personaNombre']."</td>
 								  <td>".$resultado['apellido']."</td>
 								  <td>".$resultado['cedula']."</td>
 								  <td>".$resultado['email']."</td>
-								  <td>".$resultado['nombre']."</td>
+								  <td>".$resultado['nombreUsuario']."</td>
 								  <td>".$tipo."</td>
 								  <td>".$activo."</td>
+								  <td>".$cede."</td>
+								  <td>".$resultado['nombreDepartamento']."</td>
 								  <td><a href=\"editUser.php?active=3&id=".$resultado['idPersona']."\">Editar</a></td>
 								  <td><a href=\"scripts/scriptActDesactUsuario.php?id=".$resultado['idPersona']."\">".$actdesc."</a></td>
 							  </tr>";

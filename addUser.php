@@ -15,6 +15,8 @@
 	<script type="text/javascript" src="js/validaCedula.js"></script>
 	<script type="text/javascript" src="js/validaEmail.js"></script>
 	<script type="text/javascript" src="js/letrasYnumeros.js"></script>
+	<script type="text/javascript" src="js/listaDepartamentoUsuario.js"></script>
+
 
 	<script type="text/javascript">
 
@@ -35,6 +37,23 @@
 			email.focusout(validaCedula);
 			email.focus(validaEmail);
 			email.focusout(validaEmail);
+
+			$(document).ready(function(){
+	            $(".cede").hide();
+	            $("#empresa").change(function(){
+	            $(".cede").hide();
+	            $("#div_" + $(this).val()).show();
+	            });
+
+	            $("#empresa").change(listar)
+
+	            function listar(){
+
+	        		$("#cede"+$("#empresa").val()).change(listaDepartamentoUsuario);
+
+	        	}
+
+	        });
 		}
 
 		$(function(){
@@ -117,6 +136,48 @@
 					<td>Clave de Usuario:</td><td><input type="text" id="clave" name="clave" required></td>
 
 				</tr>
+
+				<tr>
+
+					<td>Departamento</td>
+					<tr>
+						<td>Compañia</td>
+						<td>
+							<select name="empresa" id="empresa">
+				            <option value="0">Seleccione Empresa</option>
+				            <option value="1">Comercial Indriago C.A.</option>
+				            <option value="2">Supermercado Francys C.A.</option>
+				        	</select>
+				        </td>
+				    </tr>
+
+				    <tr id="div_1" class="cede">
+			            <td>Cede</td>
+			            <td><select name="cede1" id="cede1">
+				            <option value="0">Seleccione Cede</option>
+				            <option value="1">Carupano</option>
+				            <option value="2">Maturin</option>
+				            <option value="3">Cumana</option>
+				        </select></td>
+				    </tr>
+
+				    <tr id="div_2" class="cede">
+			           <td>Cede</td>
+			           <td><select name="cede2" id="cede2">
+				            <option value="0">Seleccione Cede</option>
+				            <option value="1">Carupano</option>
+				            <option value="2">Cumana</option>
+				        </select></td>
+					</tr>
+
+					<tr>
+
+						<td>Seleccione un Departamento</td>
+						<td id="listaDepartamentos"></td>
+
+					</tr>
+
+				</tr>	
 
 				<tr>
 

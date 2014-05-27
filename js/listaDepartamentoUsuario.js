@@ -1,6 +1,6 @@
-function listaDepartamentos(){
+function listaDepartamentoUsuario(){
                          
-var consulta = $("#empresa").val()+$("#cede"+$("#empresa").val()).val();
+var consulta = $("#cede"+$("#empresa").val()).val()+$("#empresa").val();
                       
 //hace la búsqueda
 $("#listaDepartamentos").delay(1000).queue(function(n) {      
@@ -9,7 +9,7 @@ $("#listaDepartamentos").delay(1000).queue(function(n) {
                            
         $.ajax({
               type: "POST",
-              url: "scripts/scriptListDepartament.php",
+              url: "scripts/scriptListDepartamentUser.php",
               data: "b="+consulta,
               dataType: "html",
               error: function(){

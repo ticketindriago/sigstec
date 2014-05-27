@@ -21,6 +21,8 @@
 	   <li class=<?=$active[2]?>><a href='index.php?active=2'><span>Solicitudes Cerradas</span></a></li>
 	   <li class=<?=$active[3]?>><a href='listUser.php?active=3'><span>Usuarios</span></a></li>
 	   <li class=<?=$active[4]?>><a href='listDepartament.php?active=4'><span>Departamentos</span></a></li>
+	   <li class=<?=$active[4]?>><a href='scripts/scriptCierraSesion.php'><span>Cerrar Sesion</span></a></li>
+	   <div id="mostrarUsuario" style="float:right">Usuario: <?=$_SESSION['ticket_usuario']?></div>
 	</ul>
 
 </div>
