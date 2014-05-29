@@ -16,14 +16,15 @@ $ticket = new Ticket();
 
 if($_SESSION['ticket_tipo'] == 3){
 
-	$consulta = $ticket->listTicketUnrevisedEmpleado($conexion, $_SESSION['ticket_id']);
+	$consulta = $ticket->listTicketCloseEmpleado($conexion, $_SESSION['ticket_id']);
 }
 if($_SESSION['ticket_tipo'] == 2){
 
-	$consulta = $ticket->listTicketUnrevisedSupervisor($conexion, $_SESSION['ticket_id_departamento']);
+	$consulta = $ticket->listTicketCloseSupervisor($conexion, $_SESSION['ticket_id_departamento']);
 }
 else 
-	$consulta = $ticket->listTicketUnrevised($conexion);
+	$consulta = $ticket->listTicketClose($conexion);
+
 
 ?>
 <!DOCTYPE>
@@ -32,7 +33,7 @@ else
 
 <head>
 
-	<title>Solicitudes Pendientes</title>
+	<title>Solicitudes Cerradas</title>
 	<meta charset="utf-8" />
 	
 	<link rel="stylesheet" type="text/css" href="links.css"/>
@@ -104,10 +105,8 @@ else
 						$status = "Por Revisar";
 					elseif($resultado['status']==2)
 						$status = "Revisado";
-					elseif($resultado['status']==3)
-						$status = "Cerrado";
 					else
-						$status = "ReAbierto";
+						$status = "Cerrado";
 
 					if(strlen($resultado['archivo'])>0)
 						$archivo = "Si";
@@ -134,7 +133,7 @@ else
 							  <td>".$resultado['titulo']."</td>
 							  <td>".$archivo."</td>
 							  <td>".$status."</td>
-							  <td><a href=\"checkTicket.php?active=1&id=".$resultado['id']."\">".$resultado['id']."</a></td>
+							  <td><a href=\"checkTicket.php?active=2&id=".$resultado['id']."\">".$resultado['id']."</a></td>
 						  </tr>";
 				}
 				

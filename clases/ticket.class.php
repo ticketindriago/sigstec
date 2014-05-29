@@ -12,6 +12,9 @@ class Ticket{
 	private $fechaCreacion;
 	private $fechaRevicion;
 	private $fechaCierre;
+	private $respuesta;
+	private $fechaRespuesta;
+	private $hora;
 
 	function setIdUsuario($idUsuario){
 
@@ -55,6 +58,12 @@ class Ticket{
 		$this->fechaCreacion = date("Y-m-d");
 	}
 
+	function setFechaRespuesta(){
+
+		$this->fechaRespuesta 	= date("Y-m-d");
+		$this->hora 			= date("H:i:s");
+	}
+
 	function setFechaRevicion($FechaRevicion){
 
 		$this->FechaRevicion = $FechaRevicion;
@@ -63,6 +72,11 @@ class Ticket{
 	function setFechaCierre($FechaCierre){
 
 		$this->FechaCierre = $FechaCierre;
+	}
+
+	function setRespuesta($respuesta){
+
+		$this->respuesta = $respuesta;
 	}
 
 	function getId($conexion){
@@ -80,7 +94,78 @@ class Ticket{
 
 	function listTicketUnrevised($conexion){
 
-		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status = '1' ") or die("Error insertando nuevo Ticket: ".mysqli_error($conexion));
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status = '1' OR status = '2' OR status = '4' ") or die("Error listanto Ticket: ".mysqli_error($conexion));
+
+		return $consulta;
+	}
+
+	function listTicketUnrevisedSupervisor($conexion, $id){
+
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket as t
+											 JOIN usuario AS u
+											 ON t.id_usuario = u.id
+											 WHERE t.status = '1' OR t.status = '2' OR t.status = '4' AND u.id_departamento = ".$id." ") 
+											 or die("Error listando Ticket: ".mysqli_error($conexion));
+
+		return $consulta;
+	}
+
+	function listTicketUnrevisedEmpleado($conexion, $id){
+
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status = '1' OR status = '2' OR status = '4' AND id_usuario = ".$id." ") 
+											 or die("Error listando Ticket: ".mysqli_error($conexion));
+
+		return $consulta;
+	}
+
+	function listTicketClose($conexion){
+
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status = '3' ") or die("Error insertando nuevo Ticket: ".mysqli_error($conexion));
+
+		return $consulta;
+	}
+
+	function listTicketCloseSupervisor($conexion, $id){
+
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket as t
+											 JOIN usuario AS u
+											 ON t.id_usuario = u.id
+											 WHERE t.status = '3' AND u.id_departamento = ".$id." ") 
+											 or die("Error listando Ticket: ".mysqli_error($conexion));
+
+		return $consulta;
+	}
+
+	function listTicketCloseEmpleado($conexion, $id){
+
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status = '3' AND id_usuario = ".$id." ") 
+											 or die("Error listando Ticket: ".mysqli_error($conexion));
+
+		return $consulta;
+	}
+
+	function searchTicket($conexion, $id){
+
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE id = ".$id." ") or die("Error buscando Ticket: ".mysqli_error($conexion));
+
+		return $consulta;
+	}
+
+	function changueStatus($conexion, $id){
+
+		mysqli_query($conexion, "UPDATE ticket SET status = '".$this->status."' WHERE id = ".$id." ") or die ("Error actualizando status: ".mysqli_error($conexion));
+	}
+
+	function addResponse($conexion, $id_ticket){
+
+		mysqli_query($conexion, "INSERT INTO respuestas (id_ticket, id_usuario, respuesta, fecha, hora) 
+								 VALUES (".$id_ticket.", ".$this->idUsuario.", '".$this->respuesta."', '".$this->fechaRespuesta."', '".$this->hora."')") 
+								 or die("Error Insertando Respuesta: ".mysqli_error($conexion));
+	}
+
+	function listResponse($conexion, $id){
+
+		$consulta = mysqli_query($conexion, "SELECT * FROM respuestas WHERE id_ticket = ".$id." ") or die("Error Listando Respuestas: ".mysqli_error($conexion));
 
 		return $consulta;
 	}

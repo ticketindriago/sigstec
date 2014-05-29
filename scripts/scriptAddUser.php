@@ -17,9 +17,9 @@ $usuario->setApellido($_POST['apellido']);
 $usuario->setCedula($_POST['cedula']);
 $usuario->setEmail($_POST['email']);
 $usuario->setNombreUsuario($_POST['nombreUsuario']);
-$usuario->setClave($_POST['clave']);
+$usuario->setClave(md5($_POST['clave']));
 $usuario->setTipo($_POST['tipo']);
-$usuario->setTipo($_POST['departamento']);
+$usuario->setDepartamento($_POST['departamento']);
 $usuario->addUser($conexion);
 
 $conexion->close();

@@ -58,8 +58,7 @@ class Usuario{
 								 or die("Error insertando nueva Persona: ".mysqli_error($conexion));
 
 		mysqli_query($conexion, "INSERT INTO usuario (id_persona, id_departamento, nombre, clave, tipo) 
-								 values('".mysqli_insert_id($conexion)."', '".$this->departamento."', '".$this->nombreUsuario."', '".$this->clave."',
-								 										   '".$this->tipo."')")
+								 values(".mysqli_insert_id($conexion).", ".$this->departamento.", '".$this->nombreUsuario."', '".$this->clave."', '".$this->tipo."')")
 								 or die("Error insertando nuevo Usuario: ".mysqli_error($conexion));
 	}
 
@@ -75,12 +74,29 @@ class Usuario{
 		return $consulta;
 	}
 
-	function searchUser($conexion, $id){
+	function listUserForDepartament($conexion, $departamento){
 
-		$consulta = (mysqli_query($conexion, "SELECT *, p.nombre as personaNombre, p.id as idPersona FROM persona as p
+		$consulta = (mysqli_query($conexion, "SELECT *, p.nombre as personaNombre, p.id as idPersona, d.nombre as nombreDepartamento, u.nombre as nombreUsuario
+											  FROM persona as p
 											  JOIN usuario as u
 											  on p.id = u.id_persona
-											  WHERE p.id = ".$id." ")) or die("Error buscando Usuarios: ".mysqli_error($conexion));
+											  JOIN departamento as d
+											  on u.id_departamento = d.id
+											  WHERE id_departamento = ".$departamento." ")) 
+											  or die("Error listando Usuarios: ".mysqli_error($conexion));
+		
+		return $consulta;
+	}
+
+	function searchUser($conexion, $id){
+
+		$consulta = (mysqli_query($conexion, "SELECT *, p.nombre as personaNombre, p.id as idPersona, d.nombre as nombreDepartamento, u.nombre as nombreUsuario
+											  FROM persona as p
+											  JOIN usuario as u
+											  on p.id = u.id_persona
+											  JOIN departamento as d
+											  on u.id_departamento = d.id
+											  WHERE u.id = ".$id." ")) or die("Error buscando Usuarios: ".mysqli_error($conexion));
 		
 		return $consulta;
 	}

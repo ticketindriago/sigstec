@@ -16,7 +16,7 @@ if(isset($_POST['usuario'])){
 
 	$usuario = new Usuario();
 
-	$consulta = $usuario->validaUsuario($conexion, $_POST['usuario'], $_POST['clave']);
+	$consulta = $usuario->validaUsuario($conexion, $_POST['usuario'], md5($_POST['clave']));
 
 	$valido = $consulta->num_rows;
 
@@ -26,15 +26,17 @@ if(isset($_POST['usuario'])){
 
 		if($resultado['activo']){
 
-			$_SESSION['ticket_usuario'] = $resultado['nombre'];
+			$_SESSION['ticket_usuario'] 			= $resultado['nombre'];
 
-			$_SESSION['ticket_tipo']	= $resultado['tipo'];
+			$_SESSION['ticket_tipo']				= $resultado['tipo'];
 
-			$_SESSION['ticket_activo']	= $resultado['activo'];
+			$_SESSION['ticket_activo']				= $resultado['activo'];
 
-			$_SESSION['ticket_codigo']	= $resultado['id'];
+			$_SESSION['ticket_id']					= $resultado['id'];
 
-			header("location: ../inicio.php");
+			$_SESSION['ticket_id_departamento'] 	= $resultado['id_departamento'];
+
+			header("location: ../inicio.php?active=5");
 		}
 		else
 			header("location: ../index.php?error=2");

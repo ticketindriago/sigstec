@@ -27,7 +27,7 @@
                   echo "<tr>
 
                               <td>".$resultado['nombre']."</td>
-                              <td><a href=\"#\">Ver Empleados</a></td>
+                              <td><a href=\"listUserForDepartament.php?active=4&id_departamento=".$resultado['id']."\">Ver Empleados</a></td>
                               <td><a href=\"editDepartament.php?active=4&id=".$resultado['id']."\">Editar</a></td>
 
                         </tr>";

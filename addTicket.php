@@ -1,3 +1,23 @@
+<?php
+
+require ("scripts/scriptValidaSession.php");
+require ("clases/usuario.class.php");
+require ("clases/baseDatos.class.php");
+
+$conexion = new baseDatos();
+
+if ($conexion->connect_errno) {
+    
+    echo "Fallo la conexion: ".$conexion->connect_error;
+}
+
+$usuario = new Usuario();
+
+$consulta = $usuario->searchUser($conexion, $_SESSION['ticket_id']);
+
+$resultado 	= $consulta->fetch_array(MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE>
 
 <html lang="es">
@@ -13,13 +33,17 @@
 
 <body>
 	
-	<header></header>
+	<?php
+
+		include_once("partes/header.php");
+
+	?>
 
 	<nav>
 
 		<?php
 
-			include_once("partes/menu.php");
+			$_SESSION['ticket_tipo'] == 1 ? include_once("partes/menu.php") : include_once("partes/menu2.php");
 
 		?>
 
@@ -33,16 +57,21 @@
 
 				<tr>
 
-					<td>Nombre:</td><td>Anonimo</td>
+					<td>Nombre:</td><td><strong><?=$resultado['personaNombre']?> <?=$resultado['apellido']?></strong></td>
 
 				</tr>
 
 				<tr>
 						
 					<td>Tipo de Solicitud:</td>
-					<td>Soporte<input type="radio" name="solicitud" id="solicitud" value="1" required>
-						Reparacion<input type="radio" name="solicitud" id="solicitud" value="2" required>
-						Asistencia<input type="radio" name="solicitud" id="solicitud" value="3" required></td>
+					<td>
+						<select name="solicitud" id="solicitud" required>
+							<option value="0">-</option>
+							<option value="1">Soporte</option>
+							<option value="2">Reparacion</option>
+							<option value="3">Asistencia</option>
+						</select>
+					</td>
 							
 						
 				</tr>
@@ -50,16 +79,21 @@
 				<tr>
 						
 					<td>Prioridad:</td>
-					<td>Alta<input type="radio" name="prioridad" id="prioridad" value="1" required>
-						Baja<input type="radio" name="prioridad" id="prioridad" value="2" required>
-						Media<input type="radio" name="prioridad" id="prioridad" value="3" required></td>
+					<td>
+						<select name="prioridad" id="prioridad" required>
+							<option value="0">-</option>
+							<option value="1">Alta</option>
+							<option value="2">Media</option>
+							<option value="3">Baja</option>
+						</select>
+					</td>
 							
 						
 				</tr>
 
 				<tr>
 
-					<td>Titulo:</td><td><input type="text" id="titulo" name="titulo" required></td>
+					<td>Titulo:</td><td><input type="text" id="titulo" name="titulo" size="60" required></td>
 
 				</tr>
 

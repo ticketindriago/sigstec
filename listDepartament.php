@@ -1,3 +1,8 @@
+<?php
+
+require ("scripts/scriptValidaSession.php");
+?>
+
 <!DOCTYPE>
 
 <html lang="es">
@@ -37,13 +42,17 @@
 
 <body>
 	
-	<header></header>
+	<?php
+
+		include_once("partes/header.php");
+
+	?>
 
 	<nav>
 
 		<?php
 
-			include_once("partes/menu.php");
+			$_SESSION['ticket_tipo'] == 1 ? include_once("partes/menu.php") : include_once("partes/menu2.php");
 
 		?>
 

@@ -9,6 +9,16 @@ a{
 	text-decoration: none;
 }
 
+textarea{
+
+	height: 150px;
+	width: 400px;
+	max-height: 150px;
+	min-height: 150px;
+	max-width: 400px;
+	min-width: 400px;
+}
+
 body{
 
 	margin: auto;
@@ -23,6 +33,7 @@ header{
 	width:	100%;
 	margin: auto;
 	float: left;
+	position: fixed;
 
 }
 
@@ -38,6 +49,8 @@ nav{
 	width:	100%;
 	margin: auto;
 	float: left;
+	margin-top: 12%;
+	position: fixed;
 
 }
 
@@ -49,6 +62,7 @@ article{
 	float: left;
 	padding-top: 10px;
 	padding-left: 10px;
+	margin-top: 15%;
 
 }
 
@@ -109,6 +123,12 @@ table#listar tr td{
 	text-align: center;
 	color: white;
 	border-bottom: 1px solid black;
+}
+
+.fijo {
+	position:fixed !important; 
+	right:0px; top:0px; 
+	z-index:10 !important
 }
 
 #olvidoPass{

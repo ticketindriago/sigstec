@@ -18,17 +18,17 @@ require ("scripts/scriptValidaSession.php");
 
 <body>
 	
-	<header>
+	<?php
 
-		<img src="img/banner.jpg">
+		include_once("partes/header.php");
 
-	</header>
+	?>
 
 	<nav>
 
 		<?php
 
-			include_once("partes/menu.php");
+			$_SESSION['ticket_tipo'] == 1 ? include_once("partes/menu.php") : include_once("partes/menu2.php");
 
 		?>
 

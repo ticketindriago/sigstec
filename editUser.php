@@ -1,5 +1,6 @@
 <?php
 
+require ("scripts/scriptValidaSession.php");
 require ("clases/usuario.class.php");
 require ("clases/baseDatos.class.php");
 
@@ -57,13 +58,17 @@ else
 
 <body>
 	
-	<header></header>
+	<?php
+
+		include_once("partes/header.php");
+
+	?>
 
 	<nav>
 
 		<?php
 
-			include_once("partes/menu.php");
+			$_SESSION['ticket_tipo'] == 1 ? include_once("partes/menu.php") : include_once("partes/menu2.php");
 
 		?>
 

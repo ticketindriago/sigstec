@@ -1,5 +1,6 @@
 <?php
 
+require ("scriptValidaSession.php");
 require ("../clases/ticket.class.php");
 require ("../clases/baseDatos.class.php");
 
@@ -12,7 +13,7 @@ if ($conexion->connect_errno) {
 
 $ticket = new Ticket();
 
-$ticket->setIdUsuario('0');
+$ticket->setIdUsuario($_SESSION['ticket_id']);
 $ticket->setTipoSolicitud($_POST['solicitud']);
 $ticket->setPrioridad($_POST['prioridad']);
 $ticket->setTitulo($_POST['titulo']);
@@ -21,14 +22,18 @@ $ticket->setStatus(1);
 $ticket->setFechaCreacion();
 $ticket->addTicket($conexion);
 
-if ($_FILES['archivo']["error"] > 0)
-	echo "Error: " . $_FILES['archivo']['error'] . "<br>";
+if(strlen($_FILES['archivo']['name'])){
 
-$_FILES['archivo']['name'] = "imagen-".$ticket->getId($conexion).".png";
+	if ($_FILES['archivo']["error"] > 0)
+		echo "Error: " . $_FILES['archivo']['error'] . "<br>";
 
-move_uploaded_file($_FILES['archivo']['tmp_name'],"../img/imagenesTickets/".$_FILES['archivo']['name']);
+	$_FILES['archivo']['name'] = "imagen-".$ticket->getId($conexion).".png";
 
-$ticket->setArchivo($_FILES['archivo']['name'], $conexion);
+	move_uploaded_file($_FILES['archivo']['tmp_name'],"../img/imagenesTickets/".$_FILES['archivo']['name']);
+
+	$ticket->setArchivo($_FILES['archivo']['name'], $conexion);
+
+}
 
 $conexion->close();
 

@@ -13,7 +13,7 @@ if ($conexion->connect_errno) {
 
 $usuario = new Usuario();
 
-$consulta = $usuario->listUser($conexion);
+$consulta = $usuario->listUserForDepartament($conexion, $_GET['id_departamento']);
 
 ?>
 <!DOCTYPE>
@@ -49,7 +49,7 @@ $consulta = $usuario->listUser($conexion);
 
 	<article>
 
-		<a href="addUser.php?active=3">Registrar Usuario</a> | <a href="listUser.php?active=3">Listar Usuarios</a>
+		<a href="addDepartament.php?active=4">Registrar Departamento</a> | <a href="listDepartament.php?active=4">Listar Departamento</a>
 
 		<form name="formularioUsuario" action="scripts/scriptAddUser.php" method="POST">
 
