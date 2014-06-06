@@ -123,10 +123,24 @@ class Usuario{
 
 	function validaUsuario($conexion, $usuario, $clave){
 
-		$consulta = mysqli_query($conexion, "SELECT * FROM usuario WHERE nombre = '".$usuario."' AND clave = '".$clave."' ") 
+		$consulta = mysqli_query($conexion, "SELECT *, p.nombre as personaNombre, u.nombre usuarioNombre, p.id as personaId, u.id as usuarioId
+											 FROM usuario as u
+											 JOIN persona as p
+											 ON u.id_persona = p.id
+											 WHERE u.nombre = '".$usuario."' AND clave = '".$clave."' ") 
 											 or die("Error Validando: ".mysqli_error($conexion));
 
 		return $consulta;
+	}
+
+	function firstSession($conexion, $id){
+
+		mysqli_query($conexion, "UPDATE usuario SET clave = '".$this->clave."', primer_login = '1' WHERE id = ".$id."") or die("Error: ".mysqli_error($conexion));
+	}
+
+	function resetUser($conexion, $id){
+
+		mysqli_query($conexion, "UPDATE usuario SET clave = 'e10adc3949ba59abbe56e057f20f883e', primer_login = '0' WHERE id = ".$id."") or die("Error: ".mysqli_error($conexion));
 	}
 }
 

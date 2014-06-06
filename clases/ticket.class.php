@@ -94,7 +94,7 @@ class Ticket{
 
 	function listTicketUnrevised($conexion){
 
-		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status = '1' OR status = '2' OR status = '4' ") or die("Error listanto Ticket: ".mysqli_error($conexion));
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status <> '3' ") or die("Error listanto Ticket: ".mysqli_error($conexion));
 
 		return $consulta;
 	}
@@ -104,7 +104,7 @@ class Ticket{
 		$consulta = mysqli_query($conexion, "SELECT * FROM ticket as t
 											 JOIN usuario AS u
 											 ON t.id_usuario = u.id
-											 WHERE t.status = '1' OR t.status = '2' OR t.status = '4' AND u.id_departamento = ".$id." ") 
+											 WHERE t.status <> '3' AND u.id_departamento = ".$id." ") 
 											 or die("Error listando Ticket: ".mysqli_error($conexion));
 
 		return $consulta;
@@ -112,7 +112,7 @@ class Ticket{
 
 	function listTicketUnrevisedEmpleado($conexion, $id){
 
-		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status = '1' OR status = '2' OR status = '4' AND id_usuario = ".$id." ") 
+		$consulta = mysqli_query($conexion, "SELECT * FROM ticket WHERE status <> '3'  AND id_usuario = ".$id." ") 
 											 or die("Error listando Ticket: ".mysqli_error($conexion));
 
 		return $consulta;

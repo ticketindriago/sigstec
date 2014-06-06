@@ -12,82 +12,102 @@ else
 	$error=" ";
 ?>
 
-<!DOCTYPE>
+<!DOCTYPE html>
 
 <html lang="es">
+  <head>
 
-<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
 
-	<title>Login</title>
-	<meta charset="utf-8" />
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" media="screen">
+
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		  	<img src="img/banner2.jpg" alt="Banner" class="img-responsive">
+
+		</nav>
+
+		<div class="col-md-4 col-md-push-4">
+
+			<div class="panel panel-primary">
+			  <div class="panel-heading">
+			    <h3 class="panel-title text-center">Login</h3>
+			  </div>
+			  <div class="panel-body">
+			    <form role="form" method="POST" action="scripts/login.php">
+
+						<div class="form-gruop">
+
+							<label for="Usuario">Usuario:</label>
+							<input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de Usuario" required>
+
+							<label for="Clave">Clave:</label>
+							<input type="password" class="form-control" name="clave" id="clave" placeholder="Introduzca su Clave" required>
+
+						</div>
+
+						<br>
+
+						<button type="submit" class="btn btn-default">Enviar</button>
+						<button type="reset" class="btn btn-default">Borrar</button>
+
+					</form>
+			  </div>
+
+			  	<div class="panel-body">
 	
-	<link rel="stylesheet" type="text/css" href="links.css"/>
+				  	<div class="col-md-11 col-md-push-1">
 
-</head>
+				  
+				    	<a href="#">¿Olvido su Contraseña ó Usuario?</a>
+				 
 
-<body>
-	
-	<header>
+				  	</div>
 
-		<img src="img/banner.jpg">
+				  	<div class="col-md-1 col-md-push-4">
 
-	</header>
+				  
+				    	<a href="#">Ayuda</a>
+				 
 
-	<nav></nav>
+				  	</div>
 
-	<article>
-
-		<div id="login">
-
-			<div class="titulo"><h1>Login</h1></div>
-
-			<div id="formularioLogin">
-
-				<form method="POST" action="scripts/login.php">
-
-					<table>
-
-						<tr>
-
-							<th>Usuario:</th>
-							<td><input type="text" name="usuario" id="usuario" required></td>
-
-						</tr>
-
-						<tr>
-
-							<th>Clave:</th>
-							<td><input type="password" name="clave" id="clave" required></td>
-
-						</tr>
-
-						<tr>
-
-							<td colspan="2" style="text-align: center; padding-top:2px;">
-
-								<input type="submit" value="Enviar">
-								<input type="reset" value="Borrar">
-
-							</td>
-
-						</tr>
-
-					</table>
-
-				</form>
-
-				<div id="olvidoPass"><a href="#">¿Olvido su Contraseña ó Usuario?</a><br><a href="#">Ayuda</a></div>
+				</div>
 
 			</div>
 
-			<div id="error"><?=$error?></div>
+		</div>
+
+		<div class="col-md-12">
+
+			<div class="col-md-4 col-md-push-4">
+
+
+				<?php 
+				  
+					if(isset($_GET['error']) || isset($_GET['login'])) echo 	"<div class=\"alert alert-info\"><p class=\"text-center\">".$error."</p></div>";
+
+				?>
+
+			</div>
+			 
 
 		</div>
 
-	</article>
+    </div>
 
-	<footer></footer>
-
-</body>
+  </body>
 
 </html>

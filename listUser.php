@@ -59,13 +59,13 @@ $consulta = $usuario->listUser($conexion);
 
 					<td><ins>Nombre</ins></td>
 					<td><ins>Apellido</ins></td>
-					<td><ins>Cedula</ins></td>
 					<td><ins>Email</ins></td>
 					<td><ins>Usuario</ins></td>
 					<td><ins>Tipo</ins></td>
 					<td><ins>Estado</ins></td>
 					<td><ins>Cede</ins></td>
 					<td><ins>Departamento</ins></td>
+					<td></td>
 					<td></td>
 					<td></td>
 
@@ -107,7 +107,6 @@ $consulta = $usuario->listUser($conexion);
 						echo "<tr>
 								  <td>".$resultado['personaNombre']."</td>
 								  <td>".$resultado['apellido']."</td>
-								  <td>".$resultado['cedula']."</td>
 								  <td>".$resultado['email']."</td>
 								  <td>".$resultado['nombreUsuario']."</td>
 								  <td>".$tipo."</td>
@@ -116,6 +115,7 @@ $consulta = $usuario->listUser($conexion);
 								  <td>".$resultado['nombreDepartamento']."</td>
 								  <td><a href=\"editUser.php?active=3&id=".$resultado['idPersona']."\">Editar</a></td>
 								  <td><a href=\"scripts/scriptActDesactUsuario.php?id=".$resultado['idPersona']."\">".$actdesc."</a></td>
+								  <td><a href=\"scripts/scriptResetUser.php?id=".$resultado['idPersona']."\">Reset</a></td>
 							  </tr>";
 					}
 					

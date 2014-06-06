@@ -18,11 +18,11 @@ if($_SESSION['ticket_tipo'] == 3){
 
 	$consulta = $ticket->listTicketUnrevisedEmpleado($conexion, $_SESSION['ticket_id']);
 }
-if($_SESSION['ticket_tipo'] == 2){
+elseif($_SESSION['ticket_tipo'] == 2){
 
 	$consulta = $ticket->listTicketUnrevisedSupervisor($conexion, $_SESSION['ticket_id_departamento']);
 }
-else 
+else
 	$consulta = $ticket->listTicketUnrevised($conexion);
 
 ?>

@@ -2,7 +2,6 @@
 
 require ("scripts/scriptValidaSession.php");
 ?>
-
 <!DOCTYPE>
 
 <html lang="es">

@@ -56,7 +56,7 @@ require ("scripts/scriptValidaSession.php");
 
 	<article>
 
-		<a href="addDepartament.php?active=3">Registrar Departamento</a> | <a href="listDepartament.php?active=3">Listar Departamentos</a>
+		<a href="addDepartament.php?active=4">Registrar Departamento</a> | <a href="listDepartament.php?active=4">Listar Departamentos</a>
 
 		<form name="formulario" action="scripts/scriptAddDepartament.php" method="POST">
 

@@ -141,7 +141,12 @@ if($resultado_usuario['id_cede']==11)
 
 				<tr>
 
-					<td>Archivo:</td><td><img width="400" src="img/imagenesTickets/<?=$resultado['archivo']?>"></td>
+					<?php
+					
+						if(strlen($resultado['archivo'])>0)
+							echo "<td>Archivo:</td><td><img width=\"400\" src=\"img/imagenesTickets/".$resultado['archivo']."</td>";
+
+					?>
 
 				</tr>
 

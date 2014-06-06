@@ -1,6 +1,6 @@
 <tr>
 
-	<td>Respuesta:</td><td><textarea name="respuesta" id="respuesta"></textarea></td>
+	<td>Respuesta:</td><td><textarea name="respuesta" id="respuesta" required></textarea></td>
 
 </tr>
 
